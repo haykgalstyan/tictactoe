@@ -1,39 +1,53 @@
 package galstyan.hayk.tictactoe.ui
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Card
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import galstyan.hayk.tictactoe.ui.components.VerticalGrid
 import galstyan.hayk.tictactoe.ui.theme.AppTheme
+import java.lang.IllegalArgumentException
+import kotlin.math.sqrt
+
 
 @Composable
 fun Board(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-    Column(
-        modifier = Modifier
-            .width(300.dp)
-            .height(300.dp)
-    ) {
-        repeat(3) {
-            Card(
-                modifier = Modifier
-                    .width(100.dp)
-                    .height(100.dp),
-                border = BorderStroke(4.dp, Color.Green)
-            ) {
+    BoardLayout(modifier = modifier) {
+        repeat(9) {
+            Box(modifier = Modifier.fillMaxSize())
+        }
+    }
+}
 
+
+@Composable
+fun BoardLayout(
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit,
+) {
+    Layout(
+        modifier = modifier,
+        content = content,
+    ) { measurables, constraints ->
+        val placeables = measurables.map { it.measure(constraints) }
+        val side = sqrt(placeables.size.toFloat()).let {
+            if (it % 1F != 0F) throw IllegalArgumentException()
+            it.toInt()
+        }
+
+        layout(constraints.maxWidth, constraints.maxHeight) {
+            var position = 0
+            repeat(side) {
+                // place cols
+                repeat(side) {
+                    // place rows in cols
+                }
             }
         }
     }
@@ -44,6 +58,10 @@ fun Board(
 @Preview
 fun BoardPreview() {
     AppTheme {
-        Board(Modifier.fillMaxSize())
+        BoardLayout(
+            Modifier
+                .width(300.dp)
+                .height(300.dp)
+        )
     }
 }
