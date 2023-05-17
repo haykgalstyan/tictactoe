@@ -1,11 +1,14 @@
 package galstyan.hayk.tictactoe.ui
 
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 @Composable
 fun GameScreen(
 
 ) {
-    Text(text = "Game screen")
+    GameBoard(
+        Modifier.fillMaxWidth()
+    )
 }
