@@ -15,7 +15,7 @@ fun BoardLayout(
         content = content,
     ) { measurables, constraints ->
         val sideCount = sqrt(measurables.size.toFloat()).let {
-            if (it % 1F != 0F) throw IllegalArgumentException("Unsupported children count")
+            if (it % 1F != 0F) throw IllegalArgumentException("Unsupported child count")
             it.toInt()
         }
         val itemWidth = constraints.maxWidth / sideCount
