@@ -1,5 +1,6 @@
 package galstyan.hayk.tictactoe.ui.components.game
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -15,13 +16,15 @@ import galstyan.hayk.tictactoe.ui.components.game.BoardSpace as BoardSpaceCompon
 @Composable
 fun GameBoard(
     board: Board,
+    onClick: (position: Int) -> Unit,
     modifier: Modifier = Modifier,
-    // onClick: (x: Int, y: Int) -> Unit,
 ) {
     BoardLayout(modifier = modifier.aspectRatio(1F)) {
-        board.spaces.forEach { space ->
+        board.spaces.forEachIndexed { i, space ->
             BoardSpaceComponent(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clickable { onClick(i) }
             ) {
                 val mark = space.getMark()
                 if (mark != null) {
@@ -45,6 +48,7 @@ fun GameBoardPreview() {
                     BoardSpace(Mark.Nought), BoardSpace(null), BoardSpace(Mark.Cross),
                 )
             ),
+            onClick = { },
             modifier = Modifier.fillMaxSize(),
         )
     }

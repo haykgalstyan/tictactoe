@@ -1,8 +1,6 @@
 package galstyan.hayk.tictactoe.domain.model
 
-import kotlin.random.Random
-
-class Player(
+data class Player(
     val mark: Mark
 ) {
     companion object {

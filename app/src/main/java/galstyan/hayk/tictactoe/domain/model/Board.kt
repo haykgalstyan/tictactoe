@@ -2,10 +2,13 @@ package galstyan.hayk.tictactoe.domain.model
 
 
 data class Board(
-    val spaces: List<BoardSpace> = List(9) { BoardSpace() }
+    val spaces: List<BoardSpace> = List(SIZE) { BoardSpace(null) }
 ) {
+    fun mark(mark: Mark, position: Int) {
+        spaces[position].setMark(mark)
+    }
 
-    fun mark(mark: Mark, position: BoardPosition) {
-        spaces[position.x * position.y].setMark(mark) // will this work, lol?
+    companion object {
+        const val SIZE = 9
     }
 }

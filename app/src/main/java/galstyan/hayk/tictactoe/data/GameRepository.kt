@@ -1,11 +1,11 @@
 package galstyan.hayk.tictactoe.data
 
 import galstyan.hayk.tictactoe.domain.model.Board
-import galstyan.hayk.tictactoe.domain.model.BoardPosition
 import galstyan.hayk.tictactoe.domain.model.Game
 import galstyan.hayk.tictactoe.domain.model.Player
 import javax.inject.Inject
 import kotlin.random.Random
+
 
 class GameRepository @Inject constructor() {
 
@@ -15,7 +15,7 @@ class GameRepository @Inject constructor() {
         game = createNewGame()
     }
 
-    fun putMark(position: BoardPosition) {
+    fun putMark(position: Int) {
         game.mark(position)
     }
 

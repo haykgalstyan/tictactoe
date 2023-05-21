@@ -1,5 +1,7 @@
 package galstyan.hayk.tictactoe.domain.model
 
+import android.util.Log
+
 data class Game(
     val board: Board,
     private val firstPlayer: Player,
@@ -11,8 +13,8 @@ data class Game(
 
     fun getPlayer() = player
 
-    fun mark(boardPosition: BoardPosition) {
-        board.mark(player.mark, boardPosition)
+    fun mark(position: Int) {
+        board.mark(player.mark, position)
 
         completion = checkCompletion()
         if (completion == null) {
@@ -28,12 +30,39 @@ data class Game(
         val spaces = board.spaces
 
         var empty = 0
+
+        for (i in spaces.indices) {
+            val mod = i % 3
+
+            // start counting row from mod 0..2
+
+            val mk = spaces[i].getMark()
+            Log.d("xxx", "$i: $mk  ($mod)")
+
+            if (mk == null) {
+                empty++
+            }
+        }
+
+        return if (empty == 0) Completion.Draw else null
+    }
+}
+
+
+/*
+    private fun checkCompletion(): Completion? {
+        val spaces = board.spaces
+
+        var empty = 0
         var position = 0
         var irow = 0
         var limk: Mark? = null
         for (i in 0..2) {
+
+            Log.d("xxx", "position outer: $position")
             val imk = spaces[position++].getMark()
             if (imk == null) {
+                Log.d("xxx", "space detected outer: $position")
                 empty++
                 continue
             }
@@ -48,8 +77,10 @@ data class Game(
             var jrow = 0
             var ljmk: Mark? = null
             for (j in 0..2) {
+                Log.d("xxx", "position inner: $position")
                 val jmk = spaces[position++].getMark()
                 if (jmk == null) {
+                    Log.d("xxx", "space detected inner: $position")
                     empty++
                     continue
                 }
@@ -65,4 +96,4 @@ data class Game(
 
         return if (empty == 0) Completion.Draw else null
     }
-}
+ */
