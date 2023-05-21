@@ -1,4 +1,4 @@
-package galstyan.hayk.tictactoe.model
+package galstyan.hayk.tictactoe.domain.model
 
 sealed class Mark {
     object Cross : Mark()

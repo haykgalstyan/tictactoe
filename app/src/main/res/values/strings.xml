@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">tictactoe</string>
+
+    <string name="cross">Cross</string>
+    <string name="nought">Nought</string>
+
 </resources>

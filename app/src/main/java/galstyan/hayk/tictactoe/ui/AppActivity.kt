@@ -1,25 +1,21 @@
-package galstyan.hayk.tictactoe
+package galstyan.hayk.tictactoe.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.interaction.DragInteraction
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import galstyan.hayk.tictactoe.ui.GameScreen
-import galstyan.hayk.tictactoe.ui.StartScreen
+import dagger.hilt.android.AndroidEntryPoint
+import galstyan.hayk.tictactoe.ui.game.GameScreen
+import galstyan.hayk.tictactoe.ui.game.GameViewModel
 import galstyan.hayk.tictactoe.ui.theme.AppTheme
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +43,8 @@ fun AppNavHost(
             StartScreen(startGame = { navController.navigate(Destinations.Game) })
         }
         composable(Destinations.Game) {
-            GameScreen()
+            val viewModel = hiltViewModel<GameViewModel>()
+            GameScreen(viewModel)
         }
     }
 }

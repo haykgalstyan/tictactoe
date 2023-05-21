@@ -32,8 +32,9 @@ fun BoardSpace(
     }
 }
 
-@Composable
+
 @Preview
+@Composable
 fun BoardSpacePreview() {
     AppTheme {
         BoardSpace(
