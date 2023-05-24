@@ -26,7 +26,7 @@ fun GameBoard(
                     .fillMaxSize()
                     .clickable { onClick(i) }
             ) {
-                val mark = space.getMark()
+                val mark = space.mark
                 if (mark != null) {
                     BoardMark(mark, Modifier.fillMaxSize())
                 }
