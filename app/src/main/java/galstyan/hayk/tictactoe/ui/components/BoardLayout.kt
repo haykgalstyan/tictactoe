@@ -54,7 +54,7 @@ fun BoardLayout(
 
 @Preview
 @Composable
-fun previewBoardLayout() {
+fun BoardLayoutPreview() {
     BoardLayout(modifier = Modifier.aspectRatio(1F)) {
         repeat(9) {
             Surface(

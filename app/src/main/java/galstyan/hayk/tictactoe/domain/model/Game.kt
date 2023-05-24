@@ -1,6 +1,7 @@
 package galstyan.hayk.tictactoe.domain.model
 
-import galstyan.hayk.tictactoe.domain.model.Completion.Draw.check
+import galstyan.hayk.tictactoe.domain.model.Completion.Companion.check
+import galstyan.hayk.tictactoe.domain.model.Player.Companion.next
 
 data class Game(
     val board: Board,
@@ -22,11 +23,9 @@ data class Game(
         completion = board.check()
 
         if (completion == null) {
-            player = player.swap()
+            player = player.next()
         }
     }
 
-    fun getCompletion(): Completion? {
-        return completion
-    }
+    fun getCompletion() = completion
 }

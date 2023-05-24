@@ -11,8 +11,9 @@ data class Board(
     companion object {
         const val SIZE = 9
 
-        fun Board.getPositionsOf(player: Player) = getPositionsOf(player.mark)
-        fun Board.getPositionsOf(mark: Mark) =
-            spaces.mapIndexedNotNull { i, bs -> i.takeIf { bs.mark == mark } }
+        fun Board.getPositionsWith(mark: Mark) =
+            spaces.mapIndexedNotNull { i, bs ->
+                i.takeIf { bs.mark == mark }
+            }
     }
 }
